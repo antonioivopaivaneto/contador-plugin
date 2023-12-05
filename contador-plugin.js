@@ -29,10 +29,7 @@ export default {
         };
         increment();
       },
-     return:{
-      '<div>{{ count }}</div>'
-     },
-      
+      template: '<div>{{ count }}</div>'
     });
 
     // Restante do seu código...
