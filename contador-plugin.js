@@ -2,8 +2,9 @@ import { defineComponent, ref, onMounted, defineProps } from 'vue';
 
 export default defineComponent({
   name: 'Contador',
-  setup() {
-    const props = defineProps({
+  setup(props) {
+    // Define as props utilizando defineProps
+    const { from, to, interval } = defineProps({
       from: {
         type: Number,
         default: 0
@@ -18,13 +19,13 @@ export default defineComponent({
       }
     });
 
-    const count = ref(props.from);
+    const count = ref(from);
 
     onMounted(() => {
       const increment = () => {
-        if (count.value < props.to) {
+        if (count.value < to) {
           count.value++;
-          setTimeout(increment, props.interval);
+          setTimeout(increment, interval);
         }
       };
       increment();
