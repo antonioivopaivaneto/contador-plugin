@@ -1,39 +1,48 @@
-import { defineComponent, ref, onMounted, defineProps } from 'vue';
+// contador-plugin.js
 
-export default defineComponent({
-  name: 'Contador',
-  setup(props) {
-    // Define as props utilizando defineProps
-    const { from, to, interval } = defineProps({
-      from: {
-        type: Number,
-        default: 0
+export default {
+  install(Vue) {
+    Vue.component('Contador', {
+      props: {
+        from: {
+          type: Number,
+          default: 0
+        },
+        to: {
+          type: Number,
+          required: true
+        },
+        interval: {
+          type: Number,
+          default: 1000
+        }
       },
-      to: {
-        type: Number,
-        required: true
+      data() {
+        return {
+          count: this.from
+        };
       },
-      interval: {
-        type: Number,
-        default: 100
-      }
+      mounted() {
+        const increment = () => {
+          if (this.count < this.to) {
+            this.count++;
+            setTimeout(increment, this.interval);
+          }
+        };
+        increment();
+      },
+      template: '<div>{{ count }}</div>'
     });
 
-    const count = ref(from);
-
-    onMounted(() => {
+    Vue.prototype.$incrementFromTo = function (from, to, interval) {
+      let count = from;
       const increment = () => {
-        if (count.value < to) {
-          count.value++;
+        if (count < to) {
+          count++;
           setTimeout(increment, interval);
         }
       };
       increment();
-    });
-
-    return {
-      count
     };
-  },
-  template: '<div>{{ count }}</div>'
-});
+  }
+};
