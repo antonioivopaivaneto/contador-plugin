@@ -1,37 +1,13 @@
+// plugins/i18n.js
 export default {
-  install(Vue) {
-    Vue.component('Contador', {
-      props: {
-        from: {
-          type: Number,
-          default: 0
-        },
-        to: {
-          type: Number,
-          required: true
-        },
-        interval: {
-          type: Number,
-          default: 1000
-        }
-      },
-      data() {
-        return {
-          count: this.from
-        };
-      },
-      mounted() {
-        const increment = () => {
-          if (this.count < this.to) {
-            this.count++;
-            setTimeout(increment, this.interval);
-          }
-        };
-        increment();
-      },
-      template: '<div>{{ count }}</div>'
-    });
-
-    // Restante do seu código...
+  install: (app, options) => {
+    // inject a globally available $translate() method
+    app.config.globalProperties.$translate = (key) => {
+      // retrieve a nested property in `options`
+      // using `key` as the path
+      return key.split('.').reduce((o, i) => {
+        if (o) return o[i]
+      }, options)
+    }
   }
-};
+}
