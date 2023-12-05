@@ -1,22 +1,23 @@
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, ref, onMounted, defineProps } from 'vue';
 
 export default defineComponent({
   name: 'Contador',
-  props: {
-    from: {
-      type: Number,
-      default: 0
-    },
-    to: {
-      type: Number,
-      required: true
-    },
-    interval: {
-      type: Number,
-      default: 100
-    }
-  },
-  setup(props) {
+  setup() {
+    const props = defineProps({
+      from: {
+        type: Number,
+        default: 0
+      },
+      to: {
+        type: Number,
+        required: true
+      },
+      interval: {
+        type: Number,
+        default: 100
+      }
+    });
+
     const count = ref(props.from);
 
     onMounted(() => {
