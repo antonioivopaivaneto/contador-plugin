@@ -1,0 +1,19 @@
+{
+  "name": "contador",
+  "version": "1.0.0",
+  "description": "this is plugin for count animation number from,to",
+  "main": "contador-plugin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonioivopaivaneto/contador-plugin.git"
+  },
+  "author": "antonioPaiva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antonioivopaivaneto/contador-plugin/issues"
+  },
+  "homepage": "https://github.com/antonioivopaivaneto/contador-plugin#readme"
+}
