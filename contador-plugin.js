@@ -12,6 +12,10 @@ export default defineComponent({
     to: {
       type: Number,
       required: true
+    },
+    interval:{
+        type:Number,
+        default:200
     }
   },
   data() {
@@ -23,7 +27,7 @@ export default defineComponent({
     const increment = () => {
       if (this.count < this.to) {
         this.count++;
-        setTimeout(increment, 1000); // Incremento a cada segundo (1000ms)
+        setTimeout(increment, this.interval); // Incremento a cada segundo (1000ms)
       }
     };
     increment();
