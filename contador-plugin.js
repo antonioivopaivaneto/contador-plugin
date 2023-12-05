@@ -1,6 +1,4 @@
-// contador-plugin.js
-
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 
 export default defineComponent({
   name: 'Contador',
@@ -13,24 +11,27 @@ export default defineComponent({
       type: Number,
       required: true
     },
-    interval:{
-        type:Number,
-        default:200
+    interval: {
+      type: Number,
+      default: 100
     }
   },
-  data() {
+  setup(props) {
+    const count = ref(props.from);
+
+    onMounted(() => {
+      const increment = () => {
+        if (count.value < props.to) {
+          count.value++;
+          setTimeout(increment, props.interval);
+        }
+      };
+      increment();
+    });
+
     return {
-      count: this.from
+      count
     };
-  },
-  mounted() {
-    const increment = () => {
-      if (this.count < this.to) {
-        this.count++;
-        setTimeout(increment, this.interval); // Incremento a cada segundo (1000ms)
-      }
-    };
-    increment();
   },
   template: '<div>{{ count }}</div>'
 });
