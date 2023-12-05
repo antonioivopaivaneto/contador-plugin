@@ -1,5 +1,7 @@
+import MyComponent from './MyComponent.vue';
+
 export default {
   install: (app, options) => {
-    return "<b>Plugin aqqui</b>"
+    app.component('MyPluginComponent', MyComponent);
   },
 };
