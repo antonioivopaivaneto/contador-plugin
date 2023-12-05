@@ -1,5 +1,5 @@
 export default {
   install: (app, options) => {
-    alert('teste')
+    return "<b>Plugin aqqui</b>"
   },
 };
