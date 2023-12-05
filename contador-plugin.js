@@ -1,5 +1,3 @@
-// contador-plugin.js
-
 export default {
   install(Vue) {
     Vue.component('Contador', {
@@ -31,18 +29,11 @@ export default {
         };
         increment();
       },
-      template: '<div>{{ count }}</div>'
+      render() {
+        return this.$createElement('div', this.count);
+      }
     });
 
-    Vue.prototype.$incrementFromTo = function (from, to, interval) {
-      let count = from;
-      const increment = () => {
-        if (count < to) {
-          count++;
-          setTimeout(increment, interval);
-        }
-      };
-      increment();
-    };
+    // Restante do seu código...
   }
 };
