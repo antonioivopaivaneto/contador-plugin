@@ -1,4 +1,3 @@
-// contador-plugin.js
 const ContadorPlugin = {
     install(Vue) {
       Vue.component('Contador', {
